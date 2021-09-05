@@ -26,7 +26,7 @@ app.use(
     skip: function (req, res) {
       return res.statusCode < 400;
     },
-    stream: fs.writeFile(path.join(rootDir, "logs/", "news.log")),
+    stream: fs.createWriteStream(path.join(rootDir, "logs/", "news.log")),
   })
 );
 

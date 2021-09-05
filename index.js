@@ -9,7 +9,8 @@ import cors from "cors";
 import helmet from "helmet";
 
 //subapps
-// import auth from "./auth/index.js";
+import auth from "./auth/index.js";
+import news from "./news/index.js";
 
 dotenv.config();
 
@@ -32,13 +33,17 @@ app.get("/", (req, res) => {
   res.send("It's running!!!!");
 });
 
-// app.use("/auth", auth);
+app.use("/auth", auth);
+app.use("/news", news);
 
 mongoose
-  .connect(process.env.DB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://sanjai:popzz@cluster0.owrbj.mongodb.net/news?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     server.listen(PORT, () => {
       console.log(`Server listening on port: http://localhost:${PORT}`);
