@@ -2,3 +2,4 @@ node_modules/
 database/
 .DS_Store
 yarn.lock
+.git
