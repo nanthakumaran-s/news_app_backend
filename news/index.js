@@ -9,6 +9,7 @@ import rootDir from "../utils/path.js";
 import compression from "compression";
 import helmet from "helmet";
 import morgan from "morgan";
+import fileUpload from "express-fileupload";
 
 import routes from "./routes.js";
 
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 app.use(helmet());
+app.use(fileUpload());
 
 app.use(
   morgan("combined", {
