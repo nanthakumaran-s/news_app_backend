@@ -53,6 +53,6 @@ const sandboxmodel = Schema({
   },
 });
 
-const sandbox = model("Sandbox", sandboxModel);
+const sandbox = model("Sandbox", sandboxmodel);
 
 export default sandbox;
