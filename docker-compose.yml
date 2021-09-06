@@ -40,11 +40,15 @@ services:
     volumes:
       - "./redis:/data"
     ports:
-      - "6379:6379"
+      - 6379:6379
+    restart: unless-stopped
+
   newsapp:
-    image: newsapp:v0.1
+    image: newsapp:v0.2
+    environment:
+      - NODE_ENV=production
     expose:
-      - "8080"
+      - 8080
 
   nginx:
     image: nginx:1.21-alpine
@@ -54,7 +58,7 @@ services:
     depends_on:
       - newsapp
     ports:
-      - 4000:4000
+      - 80:80
 
 networks:
   mongo-compose-network:

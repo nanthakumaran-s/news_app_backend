@@ -12,6 +12,9 @@ import helmet from "helmet";
 import auth from "./auth/index.js";
 import news from "./news/index.js";
 
+//check
+let i = 0;
+
 dotenv.config();
 
 const app = express();
@@ -30,7 +33,8 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.send("It's running!!!!");
+  i++;
+  res.send(`${i} time`);
 });
 
 app.use("/auth", auth);
@@ -50,5 +54,5 @@ mongoose
     });
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
   });

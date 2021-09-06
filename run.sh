@@ -1,2 +1,2 @@
-docker-compose up
-# docker-compose up --scale newsapp=3
+# docker-compose up
+docker-compose up --scale newsapp=3
