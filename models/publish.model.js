@@ -53,6 +53,6 @@ const publishModel = Schema({
   }
 });
 
-const Published = model("Published", newsModel);
+const Published = model("Published", publishModel);
 
 export default Published;
