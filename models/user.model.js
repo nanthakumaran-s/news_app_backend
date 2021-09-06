@@ -6,10 +6,12 @@ const userModel = Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   fullname: {
     type: String,
@@ -17,10 +19,11 @@ const userModel = Schema({
   },
   password: {
     type: String,
-    minLength: 8,
   },
   avatar: {
     type: String,
+    default:
+      "https://res.cloudinary.com/dqf7aonc2/image/upload/v1630921545/default_sdvwtk.png",
   },
   deviceid: {
     type: String,
@@ -28,7 +31,6 @@ const userModel = Schema({
   },
   platform: {
     type: String,
-    enum: ["Andriod", "IOS"],
     required: true,
   },
   home_location: {
@@ -50,6 +52,10 @@ const userModel = Schema({
       ref: "Published",
     },
   ],
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const user = mongoose.model("User", userModel);
