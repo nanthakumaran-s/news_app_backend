@@ -1,4 +1,6 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
+
+const Schema = mongoose.Schema;
 
 const publishModel = Schema({
   title: {
@@ -53,6 +55,6 @@ const publishModel = Schema({
   },
 });
 
-const Published = model("Published", publishModel);
+const Published = mongoose.model("Published", publishModel);
 
 export default Published;

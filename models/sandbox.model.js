@@ -1,4 +1,6 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
+
+const Schema = mongoose.Schema;
 
 const sandboxmodel = Schema({
   title: {
@@ -53,6 +55,6 @@ const sandboxmodel = Schema({
   },
 });
 
-const sandbox = model("Sandbox", sandboxmodel);
+const sandbox = mongoose.model("Sandbox", sandboxmodel);
 
 export default sandbox;
