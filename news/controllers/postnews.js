@@ -1,13 +1,22 @@
 import PublishModel from "../../models/publish.model.js";
 
-const createPost = async (req, res) => {
+const createPost = (req, res) => {
   const post = req.body;
+
+  // upload image and then save
+
   const newPost = new PublishModel(post);
   try {
-    await newPost.save();
-    res.status(200).json(post);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
+    newPost.save().then((doc) => {
+      res.status(200).json({
+        success: true,
+        data: doc,
+        desc: "Added successfully",
+      });
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, desc: "Something went wrong" });
   }
 };
 export default createPost;

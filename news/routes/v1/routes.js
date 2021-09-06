@@ -3,10 +3,12 @@ const router = express.Router();
 
 //import controllers
 import Postnews from "../../controllers/postnews.js";
+import GetNewsById from "../../controllers/getnews-id.js";
+import GetNewsByLocation from "../../controllers/getnews-location.js";
 
-// define routers
-router.post("/postnews", Postnews); //postnews
-
-//create getnews......
+// routes
+router.post("/postnews", Postnews);
+router.get("/getnews-id", GetNewsById);
+router.get("/getnews-location", GetNewsByLocation);
 
 export default router;
