@@ -11,7 +11,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import fileUpload from "express-fileupload";
 
-import routes from "./routes.js";
+import routes from "./routes/index.js";
 
 dotenv.config();
 
