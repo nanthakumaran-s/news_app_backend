@@ -30,7 +30,7 @@ const sandboxmodel = Schema({
   },
   sharecount: {
     type: Map,
-    required: true,
+   
   },
   approved: [
     {
