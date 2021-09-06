@@ -25,9 +25,7 @@ app.use(fileUpload());
 
 app.use(
   morgan("combined", {
-    skip: function (req, res) {
-      return res.statusCode < 400;
-    },
+    skip: (req, res) => res.statusCode < 400,
     stream: fs.createWriteStream(path.join(rootDir, "logs/", "news.log")),
   })
 );
