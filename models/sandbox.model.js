@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const newsModel = Schema({
+const sandboxModel = Schema({
   title: {
     type: String,
     required: true
@@ -53,6 +53,6 @@ const newsModel = Schema({
   }
 });
 
-const Published = model("Published", newsModel);
+const sandbox = model("Sandbox", sandboxModel);
 
-export default Published;
+export default sandbox;
