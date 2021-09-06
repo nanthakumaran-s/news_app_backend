@@ -29,7 +29,8 @@ const publishModel = Schema({
     required: true
   },
   sharecount: {
-    type: Map,
+    type: Number,
+    default:0,
     required: true
   },
   approved: [
