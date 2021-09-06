@@ -14,7 +14,7 @@ const newsModel = Schema({
     required: true
   },
   author: {
-    type: [Schema.Types.ObjectId],
+    type: Schema.Types.ObjectId,
     required: true,
     ref: "User"
   },
@@ -30,18 +30,24 @@ const newsModel = Schema({
     type: Map,
     required: true
   },
-  approved: {
-    type: [Schema.Types.ObjectId],
-    ref: "User"
-  },
-  denied: {
-    type: [Schema.Types.ObjectId],
-    ref: "User"
-  },
-  Idk: {
-    type: [Schema.Types.ObjectId],
-    ref: "User"
-  },
+  approved: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
+  denied: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
+  Idk: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
   category: {
     type: String
   }
