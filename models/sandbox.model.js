@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const sandboxModel = Schema({
+const sandboxmodel = Schema({
   title: {
     type: String,
     required: true
@@ -9,7 +9,7 @@ const sandboxModel = Schema({
     type: String,
     required: true
   },
-  thumbNail: {
+  thumbnail: {
     type: String,
     required: true
   },
@@ -42,7 +42,7 @@ const sandboxModel = Schema({
       ref: "User"
     }
   ],
-  Idk: [
+  idk: [
     {
       type: Schema.Types.ObjectId,
       ref: "User"

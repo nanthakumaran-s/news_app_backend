@@ -9,7 +9,7 @@ const publishModel = Schema({
     type: String,
     required: true
   },
-  thumbNail: {
+  thumbnail: {
     type: String,
     required: true
   },
@@ -42,7 +42,7 @@ const publishModel = Schema({
       ref: "User"
     }
   ],
-  Idk: [
+  idk: [
     {
       type: Schema.Types.ObjectId,
       ref: "User"
