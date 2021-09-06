@@ -42,10 +42,12 @@ const userModel = Schema({
     type: Number,
     default: 0,
   },
-  published: {
-    type: Schema.Types.ObjectId,
-    ref: "Published",
-  },
+  published: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Published",
+    },
+  ],
 });
 
 const user = model("User", userModel);
