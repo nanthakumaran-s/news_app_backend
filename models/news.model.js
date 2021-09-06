@@ -14,7 +14,7 @@ const newsModel = Schema({
     required: true
   },
   author: {
-    type: String,
+    type: [Schema.Types.ObjectId],
     required: true,
     ref: "User"
   },
@@ -23,23 +23,23 @@ const newsModel = Schema({
     required: true
   },
   location: {
-    type: map,
+    type: Map,
     required: true
   },
   sharecount: {
-    type: map,
+    type: Map,
     required: true
   },
   approved: {
-    type: [String],
+    type: [Schema.Types.ObjectId],
     ref: "User"
   },
   denied: {
-    type: [String],
+    type: [Schema.Types.ObjectId],
     ref: "User"
   },
   Idk: {
-    type: [String],
+    type: [Schema.Types.ObjectId],
     ref: "User"
   },
   category: {
@@ -47,6 +47,6 @@ const newsModel = Schema({
   }
 });
 
-const news = model("News", newsModel);
+const Published = model("Published", newsModel);
 
-export default news;
+export default Published;
