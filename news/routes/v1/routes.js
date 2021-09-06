@@ -3,8 +3,8 @@ const router = express.Router();
 
 //import controllers
 import Postnews from "../../controllers/postnews.js";
-import GetNewsById from "../../controllers/getnews-id.js";
-import GetNewsByLocation from "../../controllers/getnews-location.js";
+import GetNewsById from "../../controllers/getnews-id.controller.js";
+import GetNewsByLocation from "../../controllers/getnews-location.controller.js";
 
 // routes
 router.post("/postnews", Postnews);
