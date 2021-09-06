@@ -3,54 +3,54 @@ import { Schema, model } from "mongoose";
 const publishModel = Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   content: {
     type: String,
-    required: true
+    required: true,
   },
   thumbnail: {
     type: String,
-    required: true
+    required: true,
   },
   author: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: "User"
+    ref: "User",
   },
   timestamp: {
     type: Date,
-    required: true
+    required: true,
   },
   location: {
     type: Map,
-    required: true
+    required: true,
   },
   sharecount: {
     type: Map,
-    required: true
+    required: true,
   },
   approved: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User"
-    }
+      ref: "User",
+    },
   ],
   denied: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User"
-    }
+      ref: "User",
+    },
   ],
   idk: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User"
-    }
+      ref: "User",
+    },
   ],
   category: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 const Published = model("Published", publishModel);

@@ -1,6 +1,7 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
 
+import express from "express";
 import fs from "fs";
 import rootDir from "../utils/path.js";
 import path from "path";
@@ -10,9 +11,7 @@ import compression from "compression";
 import helmet from "helmet";
 import morgan from "morgan";
 
-import routes from "./routes.js";
-
-dotenv.config();
+import routes from "./routes/index.js";
 
 const app = express();
 
@@ -31,4 +30,5 @@ app.use(
 );
 
 app.use("/", routes);
+
 export default app;

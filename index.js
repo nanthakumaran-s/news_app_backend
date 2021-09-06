@@ -38,8 +38,8 @@ app.get("/", (req, res) => {
   res.send(`${i} time`);
 });
 
-app.use("/auth", auth);
-app.use("/news", news);
+app.use("/api/auth", auth);
+app.use("/api/news", news);
 
 mongoose
   .connect(
