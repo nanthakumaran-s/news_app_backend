@@ -8,7 +8,7 @@ const isUsername = (req, res) => {
       return res.json({
         success: false,
         isavailable: null,
-        desc: "Something happed wrong. Try again Later",
+        desc: "Something happened wrong. Try again Later",
       });
     }
     console.log(data);

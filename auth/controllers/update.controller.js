@@ -43,7 +43,7 @@ const updateprofile = (req, res) => {
       console.error(err);
       return res.json({
         success: false,
-        desc: "Something Went Wrong. Trty Again later.",
+        desc: "Something Went Wrong. Try Again later.",
       });
     });
 };

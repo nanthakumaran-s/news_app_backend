@@ -15,6 +15,13 @@ const signin = (req, res) => {
         desc: "no user found",
       });
     }
+    if (user.isDeleted) {
+      return res.json({
+        success: false,
+        data: null,
+        desc: "no user found",
+      });
+    }
     bcrypt
       .compare(password, user.password)
       .then((isMatch) => {
