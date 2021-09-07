@@ -105,7 +105,7 @@ const getNewsByLocation = async (req, res) => {
     };
   }
 
-  if (startIdx - limit > 0) {
+  if (startIdx > 0) {
     results.previous = {
       page: page - 1,
       limit: limit,
