@@ -6,7 +6,7 @@ console.warn(
   "This Test May Be use DB CRUD Operations. Don't Run Test In Production."
 );
 console.log(
-  "THis thest will create new user and update it several times. Run Only In Dev DB"
+  "This test will create new user and update it several times. Run Only In Dev DB"
 );
 
 const services = {
