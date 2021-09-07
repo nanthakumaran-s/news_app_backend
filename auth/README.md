@@ -12,3 +12,7 @@
 #
 
 \*file should be of type image, rest should be of type string
+
+## Benchmarks Test
+
+yarn run auth_test

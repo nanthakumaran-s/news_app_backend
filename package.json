@@ -5,13 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "auth_test": "node auth/benchmarks/benchmark.test.js",
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "api-benchmark": "^1.0.1",
     "nodemon": "^2.0.12"
   },
   "dependencies": {
