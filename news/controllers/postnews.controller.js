@@ -12,7 +12,6 @@ const createPost = async (req, res) => {
       `${__dirname}/public/uploads/thumbnails/${username}-${timestamp}-${image.name}`
     );
     imgUrl = `http://localhost:8080/uploads/thumbnails/${username}-${timestamp}-${image.name}`;
-
   }
   // upload image and then save
   const addposts = {
@@ -22,16 +21,16 @@ const createPost = async (req, res) => {
     timestamp: new Date(timestamp),
     location: JSON.parse(location),
     category,
-    thumbnail: imgUrl
+    thumbnail: imgUrl,
   };
-  
+
   const newPost = new sandboxmodel(addposts);
   try {
     newPost.save().then((doc) => {
       res.status(200).json({
         success: true,
         data: doc,
-        desc: "Added successfully"
+        desc: "Added successfully",
       });
     });
   } catch (err) {
