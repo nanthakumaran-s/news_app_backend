@@ -56,6 +56,11 @@ const userModel = Schema({
     type: Boolean,
     default: false,
   },
+  language: {
+    type: String,
+    default: "en",
+    required: true,
+  },
 });
 
 const user = mongoose.model("User", userModel);
