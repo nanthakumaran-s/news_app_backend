@@ -2,7 +2,7 @@ import sandboxmodel from "../../models/sandbox.model.js";
 import UserModel from "../../models/user.model.js";
 import sendNotification from "../../notifications/newNews.notification.js";
 import path from "path";
-
+import CheckImage from "../../Ai/checkImage.Ai.js"
 import __dirname from "../../utils/path.js";
 const createPost = async (req, res) => {
   const { username, title, id, content, timestamp, location, category } =
@@ -25,11 +25,12 @@ const createPost = async (req, res) => {
     category,
     thumbnail: imgUrl
   };
-  const loc = JSON.parse(location);
+  const data = JSON.parse(location);
   //TODO: change homelocation to currentlocation
-  const locality = await UserModel.find({ "home_location.city": loc.locality });
-  const district = await UserModel.find({ "home_location.district": loc.district });
-  const state = await UserModel.find({ "home_location.state": loc.state }); 
+  const locality = await UserModel.find({ "home_location.city": data.locality });
+  const district = await UserModel.find({ "home_location.district": data.district });
+  const state = await UserModel.find({ "home_location.state": data.state }); 
+
   let deviceid;
 
   if(locality.length > 0 ){
@@ -47,13 +48,14 @@ const createPost = async (req, res) => {
         data: doc,
         desc: "Added successfully"
       });
+      sendNotification(
+        title,
+        content.substring(0, 50),
+        imgUrl.replace(/\s+/g, "-"),
+        deviceid
+      );
     });
-    sendNotification(
-      title,
-      content.substring(0, 50),
-      imgUrl.replace(/\s+/g, "-"),
-      deviceid
-    );
+    
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, desc: "Something went wrong" });
