@@ -19,12 +19,6 @@ const sendNotification = () => {
         imageUrl:
           "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
       },
-      data: {
-        title: "Bomb Bakri na yarunu theriyuma",
-        body: "Nantha na summa va",
-        imageUrl:
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-      },
     })
     .then((res) => {
       console.log(res);
@@ -35,5 +29,4 @@ const sendNotification = () => {
     });
 };
 
-sendNotification();
 export default sendNotification;
