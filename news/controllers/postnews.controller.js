@@ -2,7 +2,7 @@ import sandboxmodel from "../../models/sandbox.model.js";
 import UserModel from "../../models/user.model.js";
 import sendNotification from "../../notifications/newNews.notification.js";
 import path from "path";
-import CheckImage from "../../Ai/checkImage.Ai.js"
+
 import __dirname from "../../utils/path.js";
 const createPost = async (req, res) => {
   const { username, title, id, content, timestamp, location, category } =
