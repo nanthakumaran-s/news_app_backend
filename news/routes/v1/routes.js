@@ -11,6 +11,7 @@ import Approve from "../../controllers/approve.controller.js";
 import Deny from "../../controllers/deny.controller.js";
 import IDK from "../../controllers/idk.controller.js";
 import GetTrending from "../../controllers/trending.controller.js";
+import Search from "../../controllers/search.controller.js";
 
 // routes
 router.post("/postnews", Postnews);
@@ -22,5 +23,6 @@ router.get("/getnews-trending", GetTrending);
 router.patch("/approve", Approve);
 router.patch("/deny", Deny);
 router.patch("/idk", IDK);
+router.get("/search", Search);
 
 export default router;
