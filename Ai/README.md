@@ -1,4 +1,4 @@
-# Ai Moderator Functions (Image Toxic & Text Toxic)\*
+# Ai Moderation Functions (Image Toxic & Text Toxic)\*
 
 | function Name      | arguments\*\* | return                  |
 | ------------------ | ------------- | ----------------------- |
