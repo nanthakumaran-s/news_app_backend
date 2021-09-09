@@ -61,7 +61,10 @@ const sandboxmodel = Schema({
   },
 });
 
-sandboxmodel.plugin(Mongoosastic);
+sandboxmodel.plugin(Mongoosastic, {
+  host: "elasticsearch",
+  port: 9200,
+});
 
 const sandbox = mongoose.model("Sandbox", sandboxmodel);
 

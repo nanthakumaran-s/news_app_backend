@@ -1,6 +1,7 @@
 node_modules/
 database/
 redis/
+elasticsearch/
 .DS_Store
 yarn.lock
 .git
