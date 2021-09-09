@@ -7,10 +7,11 @@
 | /api/news/v1/getnews-location  | GET      | location, province, limit, page                                                          |
 | /api/news/v1/getnews-latlong   | GET      | lat, long                                                                                |
 | /api/news/v1/update-sharecount | PATCH    | newsid as id                                                                             |
-| /api/auth/v1/getnews-trending  | GET      | category, page, limit                                                                    |
-| /api/auth/v1/approve           | PATCH    | userid, newsid                                                                           |
-| /api/auth/v1/deny              | PATCH    | userid, newsid                                                                           |
-| /api/auth/v1/idk               | PATCH    | userid, newsid                                                                           |
+| /api/news/v1/getnews-trending  | GET      | category, page, limit                                                                    |
+| /api/news/v1/approve           | PATCH    | userid, newsid                                                                           |
+| /api/news/v1/deny              | PATCH    | userid, newsid                                                                           |
+| /api/news/v1/idk               | PATCH    | userid, newsid                                                                           |
+| /api/news/v1/search            | GET      | query                                                                                    |
 
 ---
 
