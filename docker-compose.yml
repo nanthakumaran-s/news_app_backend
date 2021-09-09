@@ -11,8 +11,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
     volumes:
       - "./database:/data/db"
-    ports:
-      - 27017:27017
+    expose:
+      - "27017"
     restart: unless-stopped
 
   mongo-express:
@@ -39,8 +39,8 @@ services:
     container_name: redis
     volumes:
       - "./redis:/data"
-    ports:
-      - 6379:6379
+    expose:
+      - "6379"
     restart: unless-stopped
 
   elasticsearch:
@@ -56,6 +56,7 @@ services:
       driver: none
     ports:
       - 9200:9200
+      - 9300:9300
 
   newsapp:
     image: newsapp:v0.2
@@ -66,7 +67,7 @@ services:
       - redis
       - elasticsearch
     expose:
-      - 8080
+      - "8080"
 
   nginx:
     image: nginx:1.21-alpine
