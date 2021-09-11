@@ -31,7 +31,7 @@ const createPost = async (req, res) => {
   let imgUrl = `http://localhost:8080/uploads/thumbnails/default.jpeg`;
   if (req.files) {
     //check the uploaded image with Ai model
-    if (await checkImageContent(req.files.image.data)) {
+    if (await checkImageContent(req.filfes.image.data)) {
       const image = req.files.image;
       await image.mv(
         `${__dirname}/public/uploads/thumbnails/${username}-${timestamp}-${image.name}`

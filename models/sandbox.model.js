@@ -31,7 +31,7 @@ const sandboxmodel = Schema({
     type: Map,
     required: true,
   },
-  sharecount: {
+  sendcount: {
     type: Number,
     default: 0,
     required: true,
