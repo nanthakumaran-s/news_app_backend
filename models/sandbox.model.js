@@ -7,58 +7,58 @@ const sandboxmodel = Schema({
   title: {
     type: String,
     required: true,
-    es_indexed: true,
+    es_indexed: true
   },
   content: {
     type: String,
     required: true,
-    es_indexed: true,
+    es_indexed: true
   },
   thumbnail: {
     type: String,
-    required: true,
+    required: true
   },
   author: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: "User",
+    ref: "User"
   },
   timestamp: {
     type: Date,
-    required: true,
+    required: true
   },
   location: {
     type: Map,
-    required: true,
+    required: true
   },
   sendcount: {
     type: Number,
     default: 0,
-    required: true,
+    required: true
   },
   approved: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
-    },
+      ref: "User"
+    }
   ],
   denied: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
-    },
+      ref: "User"
+    }
   ],
   idk: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
-    },
+      ref: "User"
+    }
   ],
   category: {
     type: String,
     required: true,
-    es_indexed: true,
-  },
+    es_indexed: true
+  }
 });
 
 sandboxmodel.plugin(Mongoosastic, {

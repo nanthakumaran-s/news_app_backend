@@ -31,7 +31,8 @@ const createPost = async (req, res) => {
   let imgUrl = `http://localhost:8080/uploads/thumbnails/default.jpeg`;
   if (req.files) {
     //check the uploaded image with Ai model
-    if (await checkImageContent(req.filfes.image.data)) {
+
+    if (await checkImageContent(req.files.image.data)) {
       const image = req.files.image;
       await image.mv(
         `${__dirname}/public/uploads/thumbnails/${username}-${timestamp}-${image.name}`
@@ -41,20 +42,13 @@ const createPost = async (req, res) => {
   }
 
   // upload image and then save
-  const addposts = {
-    title,
-    author: id,
-    content,
-    timestamp: new Date(timestamp),
-    location: JSON.parse(location),
-    category,
-    thumbnail: imgUrl,
-  };
+  
   const data = JSON.parse(location);
   //TODO: change homelocation to currentlocation
   const locality = await UserModel.find({
     "home_location.city": data.locality,
   });
+  
   const district = await UserModel.find({
     "home_location.district": data.district,
   });
@@ -69,7 +63,17 @@ const createPost = async (req, res) => {
   } else if (state.length > 0) {
     deviceid = state.map((item) => item.deviceid);
   }
-  const newPost = new sandboxmodel(addposts);
+  const addposts = {
+    title,
+    author: id,
+    content,
+    sendcount:deviceid.length,
+    timestamp: new Date(timestamp),
+    location: JSON.parse(location),
+    category,
+    thumbnail: imgUrl
+  };
+  const newPost = await new sandboxmodel(addposts);
   try {
     newPost.save().then((doc) => {
       res.status(200).json({
