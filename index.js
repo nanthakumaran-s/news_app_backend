@@ -11,6 +11,7 @@ import helmet from "helmet";
 //subapps
 import auth from "./auth/index.js";
 import news from "./news/index.js";
+import utils from "./electron/index.js";
 import { loadnsfwModel, loadtoxityModel } from "./utils/tfmodels.js";
 
 //check
@@ -41,6 +42,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", auth);
 app.use("/api/news", news);
+app.use("/api/utils", utils);
 
 mongoose
   .connect(
