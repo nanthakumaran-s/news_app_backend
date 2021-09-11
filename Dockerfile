@@ -4,13 +4,19 @@ RUN apt-get update && \
     apt-get install -y build-essential \
     wget \
     python3 \
+    pip3 \
     make \
     gcc \
     libc6-dev
+
 WORKDIR /nodejs/app
 
+RUN pip3 install gingerit
+
 COPY package*.json ./
+
 RUN npm install pm2 -g
+
 RUN npm install --production
 
 COPY . .
