@@ -6,61 +6,67 @@ const userModel = Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   fullname: {
     type: String,
-    maxLength: 120,
+    maxLength: 120
   },
   password: {
-    type: String,
+    type: String
   },
   avatar: {
     type: String,
     default:
-      "https://res.cloudinary.com/dqf7aonc2/image/upload/v1630921545/default_sdvwtk.png",
+      "https://res.cloudinary.com/dqf7aonc2/image/upload/v1630921545/default_sdvwtk.png"
   },
   deviceid: {
     type: String,
-    required: true,
+    required: true
   },
   platform: {
     type: String,
-    required: true,
+    required: true
   },
   home_location: {
-    type: Map,
+    type: Map
   },
   current_location: {
-    type: Map,
+    type: Map
   },
   last_active: {
-    type: Date,
+    type: Date
   },
   score: {
     type: Number,
-    default: 0,
+    default: 0
   },
   published: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Published",
-    },
+      ref: "Published"
+    }
   ],
   isDeleted: {
     type: Boolean,
-    default: false,
+    default: false
   },
   language: {
     type: String,
     default: "en",
-    required: true,
+    required: true
   },
+  bookmarks: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Published"
+    }
+  ]
 });
 
 const user = mongoose.model("User", userModel);
