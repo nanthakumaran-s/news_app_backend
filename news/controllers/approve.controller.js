@@ -41,10 +41,12 @@ const approve = async (req, res) => {
     if (approvepercent >= 20) {
       await publishPost.save();
       res.json({ success: true, desc: "Added to Approved" });
+    }else{
+      res.json({ success: false, desc: "Denied" });
     }
   } catch (error) {
     console.log(error);
-    res.json({ error });
+    res.json({ success: false, desc: "Something went wrong" });
   }
 };
 
