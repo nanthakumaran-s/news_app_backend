@@ -988,9 +988,9 @@ cookiejar@^2.1.0:
   integrity sha512-Mw+adcfzPxcPeI+0WlvRrr/3lGVO0bD75SxX6811cxSh1Wbxx7xZBGK1eVtDf6si8rg2lhnUjsVLMFMfbRIuwA==
 
 core-js@3:
-  version "3.17.2"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.17.2.tgz#f960eae710dc62c29cca93d5332e3660e289db10"
-  integrity sha512-XkbXqhcXeMHPRk2ItS+zQYliAMilea2euoMsnpRRdDad6b2VY6CQQcwz1K8AnWesfw4p165RzY0bTnr3UrbYiA==
+  version "3.17.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.17.3.tgz#8e8bd20e91df9951e903cabe91f9af4a0895bc1e"
+  integrity sha512-lyvajs+wd8N1hXfzob1LdOCCHFU4bGMbqqmLn1Q4QlCpDqWPpGf+p0nj+LNrvDDG33j0hZXw2nsvvVpHysxyNw==
 
 core-util-is@1.0.2:
   version "1.0.2"
@@ -1170,15 +1170,6 @@ elasticsearch@16.7.1:
   version "16.7.1"
   resolved "https://registry.yarnpkg.com/elasticsearch/-/elasticsearch-16.7.1.tgz#925f263cd1c1e9ff76bd244cb769b93e15aca1db"
   integrity sha512-PL/BxB03VGbbghJwISYvVcrR9KbSSkuQ7OM//jHJg/End/uC2fvXg4QI7RXLvCGbhBuNQ8dPue7DOOPra73PCw==
-  dependencies:
-    agentkeepalive "^3.4.1"
-    chalk "^1.0.0"
-    lodash "^4.17.10"
-
-elasticsearch@^16.7.2:
-  version "16.7.2"
-  resolved "https://registry.yarnpkg.com/elasticsearch/-/elasticsearch-16.7.2.tgz#53ebf4563f97e43acade5d79d895d813bdc9f949"
-  integrity sha512-1ZLKZlG2ABfYVBX2d7/JgxOsKJrM5Yu62GvshWu7ZSvhxPomCN4Gas90DS51yYI56JolY0XGhyiRlUhLhIL05Q==
   dependencies:
     agentkeepalive "^3.4.1"
     chalk "^1.0.0"
