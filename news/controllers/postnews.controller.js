@@ -1,14 +1,18 @@
 import sandboxmodel from "../../models/sandbox.model.js";
 import UserModel from "../../models/user.model.js";
 import sendNotification from "../../notifications/newNews.notification.js";
+
+import path from "path";
+
 import __dirname from "../../utils/path.js";
 import checkImageContent from "../../Ai/checkImage.Ai.js";
 import checkContentToxity from "../../Ai/checkContent.Ai.js";
 
+
 const createPost = async (req, res) => {
   const { username, title, id, content, timestamp, location, category } =
     req.body;
-
+  
   if ((await checkContentToxity(content)) === false) {
     return res.json({
       success: false,

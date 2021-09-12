@@ -8,13 +8,13 @@ const autocorrect = (req, res) => {
     return res.json({
       success: false,
       data: null,
-      desc: "something went wrong",
+      desc: "something went wrong"
     });
   }
 
   return res.json({
     success: true,
-    data: result.stdout.toString(),
+    data: result.stdout.toString()
   });
 };
 
