@@ -5,7 +5,6 @@ import { createServer } from "http";
 
 // middlewares
 import compression from "compression";
-import cors from "cors";
 import helmet from "helmet";
 
 //subapps
@@ -28,12 +27,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 
 app.use(helmet());
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
