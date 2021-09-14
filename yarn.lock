@@ -1620,6 +1620,26 @@ google-protobuf@^3.9.2:
   resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.17.3.tgz#f87595073545a77946c8f0b67c302c5f7646d700"
   integrity sha512-OVPzcSWIAJ+d5yiHyeaLrdufQtrvaBrF4JQg+z8ynTkbO3uFcujqXszTumqg1cGsAsjkWnI+M5B1xZ19yR4Wyg==
 
+googleapis-common@^5.0.2:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/googleapis-common/-/googleapis-common-5.0.5.tgz#4c7160be1ed7e4cc8cdbcdb6eac8a4b3a61dd782"
+  integrity sha512-o2dgoW4x4fLIAN+IVAOccz3mEH8Lj1LP9c9BSSvkNJEn+U7UZh0WSr4fdH08x5VH7+sstIpd1lOYFZD0g7j4pw==
+  dependencies:
+    extend "^3.0.2"
+    gaxios "^4.0.0"
+    google-auth-library "^7.0.2"
+    qs "^6.7.0"
+    url-template "^2.0.8"
+    uuid "^8.0.0"
+
+googleapis@^85.0.0:
+  version "85.0.0"
+  resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-85.0.0.tgz#a23198e9e4ba75c7ed3168341b972c4d40d74a9c"
+  integrity sha512-9zFsCbxz/642PROcYJsg/CCm89U1qe15c0Wtv7bmZ8cWYLD1Jszc5z+xTNoXZxnomLbvQaHeKBCPh7RdAccYOA==
+  dependencies:
+    google-auth-library "^7.0.2"
+    googleapis-common "^5.0.2"
+
 got@^9.6.0:
   version "9.6.0"
   resolved "https://registry.yarnpkg.com/got/-/got-9.6.0.tgz#edf45e7d67f99545705de1f7bbeeeb121765ed85"
@@ -2389,6 +2409,11 @@ multi-integer-range@3.0.0:
   resolved "https://registry.yarnpkg.com/multi-integer-range/-/multi-integer-range-3.0.0.tgz#d8ec2744d08758f2acf81653d2fe038a95cf7595"
   integrity sha1-2OwnRNCHWPKs+BZT0v4DipXPdZU=
 
+nanoid@^2.1.0:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
+  integrity sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
+
 ndarray-ops@1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/ndarray-ops/-/ndarray-ops-1.2.2.tgz#59e88d2c32a7eebcb1bc690fae141579557a614e"
@@ -2449,6 +2474,11 @@ node-forge@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.10.0.tgz#32dea2afb3e9926f02ee5ce8794902691a676bf3"
   integrity sha512-PPmu8eEeG9saEUvI97fm4OYxXVB6bFvyNTyiUOBichBpFG8A1Ljw3bY62+5oOjDEMHRnd0Y7HQ+x7uzxOzC6JA==
+
+nodemailer@^6.6.3:
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.6.3.tgz#31fb53dd4d8ae16fc088a65cb9ffa8d928a69b48"
+  integrity sha512-faZFufgTMrphYoDjvyVpbpJcYzwyFnbAMmQtj1lVBYAUSm3SOy2fIdd9+Mr4UxPosBa0JRw9bJoIwQn+nswiew==
 
 nodemon@^2.0.12:
   version "2.0.12"
@@ -2716,7 +2746,7 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.5.1:
+qs@^6.5.1, qs@^6.7.0:
   version "6.10.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.10.1.tgz#4931482fa8d647a5aab799c5271d2133b981fb6a"
   integrity sha512-M528Hph6wsSVOBiYUnGf+K/7w0hNshs/duGsNXPUCLH5XAqjEtiPGwNONLV0tBH8NoGb0mvD5JubnUTrujKDTg==
@@ -2997,6 +3027,13 @@ setprototypeof@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.1.1.tgz#7e95acb24aa92f5885e0abef5ba131330d4ae683"
   integrity sha512-JvdAWfbXeIGaZ9cILp38HntZSFSo3mWg6xGcJJsd+d4aRMOqauag1C63dJfDw7OaMYwEbHMOxEZ1lqVRYP2OAw==
+
+shortid@^2.2.16:
+  version "2.2.16"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.16.tgz#b742b8f0cb96406fd391c76bfc18a67a57fe5608"
+  integrity sha512-Ugt+GIZqvGXCIItnsL+lvFJOiN7RYqlGy7QE41O3YC1xbNSeDGIRO7xg2JJXIAj1cAGnOeC1r7/T9pgrtQbv4g==
+  dependencies:
+    nanoid "^2.1.0"
 
 side-channel@^1.0.4:
   version "1.0.4"
@@ -3391,6 +3428,11 @@ url-parse-lax@^3.0.0:
   integrity sha1-FrXK/Afb42dsGxmZF3gj1lA6yww=
   dependencies:
     prepend-http "^2.0.0"
+
+url-template@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/url-template/-/url-template-2.0.8.tgz#fc565a3cccbff7730c775f5641f9555791439f21"
+  integrity sha1-/FZaPMy/93MMd19WQflVV5FDnyE=
 
 util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"
