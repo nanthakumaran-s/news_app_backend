@@ -45,22 +45,14 @@ const createPost = async (req, res) => {
       data.append("api_secret", "9EF635C8D1433FB9746C02FE04BEAF3B");
       const res = await fetch("http://localhost:8000/api/v1/upload", {
         method: "POST",
-        body: data,
+        body: data
       });
       const json = await res.json();
       imgUrl = json.imgUrl;
     }
   }
 
-  const addposts = {
-    title,
-    author: id,
-    content,
-    timestamp: new Date(timestamp),
-    location: JSON.parse(location),
-    category,
-    thumbnail: imgUrl,
-  };
+ 
   const data = JSON.parse(location);
   //TODO: change homelocation to currentlocation
   const locality = await UserModel.find({
@@ -74,12 +66,22 @@ const createPost = async (req, res) => {
   let deviceid;
 
   if (locality.length > 0) {
-    deviceid = locality.map((item) => item.deviceid);
+     deviceid = await locality.map((item) => item.deviceid);
   } else if (district.length > 0) {
-    deviceid = district.map((item) => item.deviceid);
+     deviceid = await district.map((item) => item.deviceid);
   } else if (state.length > 0) {
-    deviceid = state.map((item) => item.deviceid);
+    deviceid = await state.map((item) => item.deviceid);
   }
+  const addposts = {
+    title,
+    author: id,
+    content,
+    sendcount: deviceid.length,
+    timestamp: new Date(timestamp),
+    location: JSON.parse(location),
+    category,
+    thumbnail: imgUrl
+  };
   const newPost = new sandboxmodel(addposts);
   try {
     newPost.save().then((doc) => {
