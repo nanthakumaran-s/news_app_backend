@@ -45,12 +45,7 @@ const publishModel = Schema({
       ref: "User",
     },
   ],
-  idk: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
+  
   category: {
     type: String,
     required: true,
