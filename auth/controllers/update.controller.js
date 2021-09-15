@@ -3,29 +3,35 @@ import User from "../../models/user.model.js";
 
 //dependency
 import __dirname from "../../utils/path.js";
-import fs from "fs";
+import fetch from "node-fetch";
+import FormData from "form-data";
 
-const updateprofile = (req, res) => {
+const updateprofile = async (req, res) => {
   const avatar = req.files;
   const { username, fullname, home_location } = req.body;
+  let imgUrl = "";
   if (avatar) {
-    if (fs.existsSync(`${__dirname}/public/uploads/avatars/${username}`)) {
-      fs.unlinkSync(`${__dirname}/public/uploads/avatars/${username}`);
-    }
-    avatar.file.mv(
-      `${__dirname}/public/uploads/avatars/${username}.png`,
-      (err) => {
-        if (err) {
-          console.error(err);
-        }
-      }
+    const data = new FormData();
+    data.append("image", avatar.image.data);
+    data.append("type", "avatars");
+    data.append("username", username);
+    data.append(
+      "api_key",
+      "B5AA1476BA32FA38F8C4FD6CCEAC9DB96B4E50545D7BB186A4329153135D98E8"
     );
+    data.append("api_secret", "9EF635C8D1433FB9746C02FE04BEAF3B");
+    const res = await fetch("http://localhost:8000/api/v1/upload", {
+      method: "POST",
+      body: data,
+    });
+    const json = await res.json();
+    imgUrl = await json.imgUrl;
   }
 
   User.findOneAndUpdate(
     { username },
     {
-      avatar: `http://localhost:8080/uploads/avatars/${username}.png`,
+      avatar: imgUrl,
       fullname: fullname,
       home_location: JSON.parse(home_location),
     },
