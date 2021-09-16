@@ -1,6 +1,7 @@
 import Sandbox from "../../models/sandbox.model.js";
+import User from "../../models/user.model.js";
 
-const sandbox = (req, res) => {
+const sandbox = async (req, res) => {
   const { newsid, userid } = req.query;
 
   // Bad Request
@@ -19,7 +20,14 @@ const sandbox = (req, res) => {
       return null;
     }
   });
-
+  await User.findOneAndUpdate(
+    { _id: userid },
+    {
+      $inc: {
+        score: 0.5,
+      },
+    }
+  );
   Sandbox.findOneAndUpdate(
     { _id: newsid },
     { $push: { idk: userid } },
