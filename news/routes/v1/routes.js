@@ -13,11 +13,13 @@ import Deny from "../../controllers/deny.controller.js";
 import IDK from "../../controllers/idk.controller.js";
 import GetTrending from "../../controllers/trending.controller.js";
 import Search from "../../controllers/search.controller.js";
+import getSandboxNewsByLocation from "../../controllers/sanbox-get-location.controller.js";
 
 // routes
 router.post("/postnews", Postnews);
 router.get("/getnews-id", GetNewsById);
 router.get("/getnews-location", GetNewsByLocation);
+router.get("/get-sandbox-news-location", getSandboxNewsByLocation);
 router.get("/getnews-latlong", GetNewsByLatLong);
 router.get("/getnews-category", GetNewsByCategory);
 router.patch("/update-sharecount", UpdateShareCount);
@@ -26,7 +28,5 @@ router.patch("/approve", Approve);
 router.patch("/deny", Deny);
 router.patch("/idk", IDK);
 router.get("/search", Search);
-
-
 
 export default router;
