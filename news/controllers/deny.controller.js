@@ -1,4 +1,5 @@
 import Sandbox from "../../models/sandbox.model.js";
+import User from "../../models/user.model.js";
 
 const deny = (req, res) => {
   const { newsid, userid } = req.query;
@@ -19,6 +20,15 @@ const deny = (req, res) => {
       return null;
     }
   });
+
+  User.findOneAndUpdate(
+    { _id: userid },
+    {
+      $inc: {
+        score: 2.5,
+      },
+    }
+  );
 
   Sandbox.findOneAndUpdate(
     { _id: newsid },
