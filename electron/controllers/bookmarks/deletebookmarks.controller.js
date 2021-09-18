@@ -1,7 +1,8 @@
 import UserModel from "../../../models/user.model.js";
 import PublishModel from "../../../models/publish.model.js";
 const deletebookmarks = async (req, res) => {
-  const { newsid, userid } = req.body;
+  console.log("vanalakm");
+  const { newsid, userid } = req.query;
   if (newsid === undefined || userid === undefined) {
     res.status(400).json({ success: false, desc: "Bad Request" });
     return null;

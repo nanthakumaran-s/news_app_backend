@@ -10,8 +10,8 @@ import createbookmarks from "../../controllers/bookmarks/createbookmarks.control
 router.get("/autocorrect", autocorrect);
 
 /* bookmarks */
-router.patch("/createbookmarks", createbookmarks);
-router.get("/getbookmarks",getbookmarks);
-router.patch("/deletebookmarks",deletebookmarks)
+router.patch("/createbookmark", createbookmarks);
+router.get("/getbookmarks", getbookmarks);
+router.delete("/deletebookmark", deletebookmarks);
 
 export default router;
