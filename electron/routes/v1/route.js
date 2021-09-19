@@ -9,6 +9,7 @@ import createbookmarks from "../../controllers/bookmarks/createbookmarks.control
 // Categories
 import getCategories from "../../controllers/categories/getcategories.controller.js";
 import createCategories from "../../controllers/categories/createcategory.controller.js";
+import report from "../../controllers/report.controller.js";
 
 router.get("/autocorrect", autocorrect);
 
@@ -20,4 +21,7 @@ router.delete("/deletebookmark", deletebookmarks);
 // category
 router.get("/getCategory", getCategories);
 router.post("/createCategory", createCategories);
+
+// report
+router.put("/report-news", report);
 export default router;

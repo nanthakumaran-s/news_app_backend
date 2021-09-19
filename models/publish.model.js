@@ -45,10 +45,14 @@ const publishModel = Schema({
       ref: "User",
     },
   ],
-  
+
   category: {
     type: String,
     required: true,
+  },
+  report: {
+    type: Number,
+    default: 0,
   },
 });
 
