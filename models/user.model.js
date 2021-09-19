@@ -52,7 +52,7 @@ const userModel = Schema({
       ref: "Published",
     },
   ],
-  isDeleted: {
+  isdeleted: {
     type: Boolean,
     default: false,
   },
@@ -67,6 +67,10 @@ const userModel = Schema({
       ref: "Published",
     },
   ],
+  isblocked: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const user = mongoose.model("User", userModel);

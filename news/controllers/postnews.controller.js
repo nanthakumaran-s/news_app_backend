@@ -70,7 +70,7 @@ const createPost = async (req, res) => {
   });
   const state = await UserModel.find({ "home_location.state": data.state });
 
-  let deviceid;
+  let deviceid = [];
 
   if (locality.length > 0) {
     deviceid = await locality.map((item) => item.deviceid);
