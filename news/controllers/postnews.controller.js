@@ -9,11 +9,19 @@ import checkImageContent from "../../Ai/checkImage.Ai.js";
 import checkContentToxity from "../../Ai/checkContent.Ai.js";
 
 const createPost = async (req, res) => {
-  const { username, title, id, content, timestamp, location, category } =
-    req.body;
+  const {
+    username,
+    title,
+    id,
+    content,
+    aicontent,
+    timestamp,
+    location,
+    category,
+  } = req.body;
   let imgUrl = `http://localhost:8080/uploads/thumbnails/default.jpeg`;
 
-  if ((await checkContentToxity(content)) === false) {
+  if ((await checkContentToxity(aicontent)) === false) {
     return res.json({
       success: false,
       data: null,
@@ -21,7 +29,7 @@ const createPost = async (req, res) => {
     });
   }
 
-  if ((await checkContentToxity(content)) === "not-loaded") {
+  if ((await checkContentToxity(aicontent)) === "not-loaded") {
     return res.json({
       success: false,
       data: null,
@@ -43,16 +51,15 @@ const createPost = async (req, res) => {
         "B5AA1476BA32FA38F8C4FD6CCEAC9DB96B4E50545D7BB186A4329153135D98E8"
       );
       data.append("api_secret", "9EF635C8D1433FB9746C02FE04BEAF3B");
-      const res = await fetch("http://localhost:8000/api/v1/upload", {
+      const res = await fetch("https://return201-s3.me/api/v1/upload", {
         method: "POST",
-        body: data
+        body: data,
       });
       const json = await res.json();
       imgUrl = json.imgUrl;
     }
   }
 
- 
   const data = JSON.parse(location);
   //TODO: change homelocation to currentlocation
   const locality = await UserModel.find({
@@ -66,9 +73,9 @@ const createPost = async (req, res) => {
   let deviceid;
 
   if (locality.length > 0) {
-     deviceid = await locality.map((item) => item.deviceid);
+    deviceid = await locality.map((item) => item.deviceid);
   } else if (district.length > 0) {
-     deviceid = await district.map((item) => item.deviceid);
+    deviceid = await district.map((item) => item.deviceid);
   } else if (state.length > 0) {
     deviceid = await state.map((item) => item.deviceid);
   }
@@ -80,7 +87,7 @@ const createPost = async (req, res) => {
     timestamp: new Date(timestamp),
     location: JSON.parse(location),
     category,
-    thumbnail: imgUrl
+    thumbnail: imgUrl,
   };
   const newPost = new sandboxmodel(addposts);
   try {
