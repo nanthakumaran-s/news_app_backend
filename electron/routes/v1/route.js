@@ -16,9 +16,6 @@ router.get("/autocorrect", autocorrect);
 router.patch("/createbookmark", createbookmarks);
 router.get("/getbookmarks", getbookmarks);
 router.delete("/deletebookmark", deletebookmarks);
-router.patch("/createbookmarks", createbookmarks);
-router.get("/getbookmarks", getbookmarks);
-router.patch("/deletebookmarks", deletebookmarks);
 
 // category
 router.get("/getCategory", getCategories);
