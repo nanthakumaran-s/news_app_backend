@@ -61,6 +61,12 @@ const userModel = Schema({
     default: "en",
     required: true,
   },
+  bookmarks: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Published",
+    },
+  ],
 });
 
 const user = mongoose.model("User", userModel);
