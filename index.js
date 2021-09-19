@@ -5,12 +5,12 @@ import { createServer } from "http";
 
 // middlewares
 import compression from "compression";
-import cors from "cors";
 import helmet from "helmet";
 
 //subapps
 import auth from "./auth/index.js";
 import news from "./news/index.js";
+import utils from "./electron/index.js";
 import { loadnsfwModel, loadtoxityModel } from "./utils/tfmodels.js";
 
 //check
@@ -25,13 +25,8 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
+
 app.use(helmet());
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
@@ -41,6 +36,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", auth);
 app.use("/api/news", news);
+app.use("/api/utils", utils);
 
 mongoose
   .connect(

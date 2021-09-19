@@ -1,6 +1,9 @@
 import sandboxmodel from "../../models/sandbox.model.js";
 import UserModel from "../../models/user.model.js";
 import sendNotification from "../../notifications/newNews.notification.js";
+
+import FormData from "form-data";
+import fetch from "node-fetch";
 import __dirname from "../../utils/path.js";
 import checkImageContent from "../../Ai/checkImage.Ai.js";
 import checkContentToxity from "../../Ai/checkContent.Ai.js";
@@ -8,6 +11,7 @@ import checkContentToxity from "../../Ai/checkContent.Ai.js";
 const createPost = async (req, res) => {
   const { username, title, id, content, timestamp, location, category } =
     req.body;
+  let imgUrl = `http://localhost:8080/uploads/thumbnails/default.jpeg`;
 
   if ((await checkContentToxity(content)) === false) {
     return res.json({
@@ -24,28 +28,31 @@ const createPost = async (req, res) => {
       desc: "Something Happened Wrong. Try Again after few seconds.",
     });
   }
-  let imgUrl = `http://localhost:8080/uploads/thumbnails/default.jpeg`;
+
   if (req.files) {
     //check the uploaded image with Ai model
     if (await checkImageContent(req.files.image.data)) {
-      const image = req.files.image;
-      await image.mv(
-        `${__dirname}/public/uploads/thumbnails/${username}-${timestamp}-${image.name}`
+      const data = new FormData();
+      data.append("image", req.files.image.data);
+      data.append("title", title.replace(/\s+/g, "-"));
+      data.append("type", "thumbnails");
+      data.append("username", username);
+      data.append("timestamp", timestamp);
+      data.append(
+        "api_key",
+        "B5AA1476BA32FA38F8C4FD6CCEAC9DB96B4E50545D7BB186A4329153135D98E8"
       );
-      imgUrl = `http://localhost:8080/uploads/thumbnails/${username}-${timestamp}-${image.name}`;
+      data.append("api_secret", "9EF635C8D1433FB9746C02FE04BEAF3B");
+      const res = await fetch("http://localhost:8000/api/v1/upload", {
+        method: "POST",
+        body: data
+      });
+      const json = await res.json();
+      imgUrl = json.imgUrl;
     }
   }
 
-  // upload image and then save
-  const addposts = {
-    title,
-    author: id,
-    content,
-    timestamp: new Date(timestamp),
-    location: JSON.parse(location),
-    category,
-    thumbnail: imgUrl,
-  };
+ 
   const data = JSON.parse(location);
   //TODO: change homelocation to currentlocation
   const locality = await UserModel.find({
@@ -59,12 +66,22 @@ const createPost = async (req, res) => {
   let deviceid;
 
   if (locality.length > 0) {
-    deviceid = locality.map((item) => item.deviceid);
+     deviceid = await locality.map((item) => item.deviceid);
   } else if (district.length > 0) {
-    deviceid = district.map((item) => item.deviceid);
+     deviceid = await district.map((item) => item.deviceid);
   } else if (state.length > 0) {
-    deviceid = state.map((item) => item.deviceid);
+    deviceid = await state.map((item) => item.deviceid);
   }
+  const addposts = {
+    title,
+    author: id,
+    content,
+    sendcount: deviceid.length,
+    timestamp: new Date(timestamp),
+    location: JSON.parse(location),
+    category,
+    thumbnail: imgUrl
+  };
   const newPost = new sandboxmodel(addposts);
   try {
     newPost.save().then((doc) => {
