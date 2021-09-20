@@ -2,7 +2,7 @@ import PublishModel from "../../models/publish.model.js";
 import Sandbox from "../../models/sandbox.model.js"; // for demo purpose only
 
 const updateShareCount = (req, res) => {
-  const { id } = req.query;
+  const { id } = req.body;
 
   // Bad Request
   if (id === undefined) {

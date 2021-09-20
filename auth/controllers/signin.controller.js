@@ -29,13 +29,17 @@ const signin = (req, res) => {
           return res.json({
             success: true,
             data: {
+              id: user._id,
               username: user.username,
               email: user.email,
               fullname: user.fullname,
-              current_location: user.current_location,
-              home_location: user.home_location,
+              current_location: user.current_location || {},
+              home_location: user.home_location || {},
               avatar: user.avatar,
               score: user.score,
+              published: user.published,
+              language: user.language,
+              bookmarks: user.bookmarks,
             },
           });
         }

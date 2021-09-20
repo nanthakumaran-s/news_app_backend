@@ -3,7 +3,7 @@ import Sandbox from "../../models/sandbox.model.js";
 import User from "../../models/user.model.js";
 
 const approve = async (req, res) => {
-  const { newsid, userid } = req.query;
+  const { newsid, userid } = req.body;
 
   // Bad Request
   if (newsid === undefined || userid === undefined) {

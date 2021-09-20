@@ -9,15 +9,19 @@ import createbookmarks from "../../controllers/bookmarks/createbookmarks.control
 // Categories
 import getCategories from "../../controllers/categories/getcategories.controller.js";
 import createCategories from "../../controllers/categories/createcategory.controller.js";
+import report from "../../controllers/report.controller.js";
 
 router.get("/autocorrect", autocorrect);
 
 /* bookmarks */
-router.patch("/createbookmarks", createbookmarks);
-router.get("/getbookmarks",getbookmarks);
-router.patch("/deletebookmarks",deletebookmarks);
+router.patch("/createbookmark", createbookmarks);
+router.get("/getbookmarks", getbookmarks);
+router.delete("/deletebookmark", deletebookmarks);
 
 // category
-router.get("/getCategory",getCategories);
-router.post("/createCategory",createCategories);
+router.get("/getCategory", getCategories);
+router.post("/createCategory", createCategories);
+
+// report
+router.put("/report-news", report);
 export default router;
