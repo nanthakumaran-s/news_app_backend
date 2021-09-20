@@ -11,6 +11,9 @@ import getCategories from "../../controllers/categories/getcategories.controller
 import createCategories from "../../controllers/categories/createcategory.controller.js";
 import report from "../../controllers/report.controller.js";
 
+// blocking
+import block from "../../controllers/block.controller.js"
+import unblock from "../../controllers/unblock.controller.js";
 router.get("/autocorrect", autocorrect);
 
 /* bookmarks */
@@ -24,4 +27,8 @@ router.post("/createCategory", createCategories);
 
 // report
 router.put("/report-news", report);
+
+// block
+router.patch("/block",block)
+router.patch("/unblock", unblock);
 export default router;

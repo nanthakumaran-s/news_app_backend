@@ -12,7 +12,8 @@ const getTrending = async (req, res) => {
   let resultData;
   switch (category) {
     case "all":
-      resultData = await Sandbox.find()
+      resultData = await PublishModel
+        .find()
         .populate("author", "username email fullname avatar")
         .sort({ sharecount: -1 })
         .skip(parseInt(startIdx))
@@ -21,7 +22,7 @@ const getTrending = async (req, res) => {
       break;
 
     default:
-      resultData = await Sandbox.find({ category: category })
+      resultData = await PublishModel.find({ category })
         .populate("author", "username email fullname avatar")
         .sort({ sharecount: -1 })
         .skip(parseInt(startIdx))
@@ -31,20 +32,20 @@ const getTrending = async (req, res) => {
   }
 
   const results = {
-    next: {},
-    previous: {},
-    data: resultData,
+    next: { page: 0, limit: 0, gonext: false },
+    previous: { page: 0, limit: 0, goprev: false },
+    data: resultData
   };
 
   let count;
   switch (category) {
     case "all":
-      count = await Sandbox.countDocuments().exec();
+      count = await PublishModel.countDocuments().exec();
       break;
 
     default:
-      count = await Sandbox.countDocuments({
-        category: category,
+      count = await PublishModel.countDocuments({
+        category
       }).exec();
       break;
   }
@@ -52,7 +53,7 @@ const getTrending = async (req, res) => {
   if (endIdx < count) {
     results.next = {
       page: page + 1,
-      limit: limit,
+      limit,
       gonext: true,
     };
   }
@@ -60,7 +61,7 @@ const getTrending = async (req, res) => {
   if (startIdx > 0) {
     results.previous = {
       page: page - 1,
-      limit: limit,
+      limit,
       goprev: true,
     };
   }
