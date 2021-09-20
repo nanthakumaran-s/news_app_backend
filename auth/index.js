@@ -34,7 +34,7 @@ app.use(
 app.use("/", routes);
 
 client.on("error", (err) => {
-  // console.error(err);
+  console.error(err);
 });
 
 export default app;
