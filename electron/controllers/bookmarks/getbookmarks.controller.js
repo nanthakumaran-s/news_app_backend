@@ -7,7 +7,7 @@ const getbookmarks = async (req, res) => {
   try {
     const data = await UserModel.findOne({ _id: userid }).populate({
       path: "bookmarks",
-      select: "title thumbnail timestamp category",
+      select: "title thumbnail timestamp category location",
       populate: { path: "author", select: "username" },
     });
     res.send({ success: true, data: data.bookmarks });
