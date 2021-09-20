@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Mongoosastic from "mongoosastic";
+import user from "./user.model.js";
 
 const Schema = mongoose.Schema;
 
