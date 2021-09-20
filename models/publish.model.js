@@ -45,7 +45,10 @@ const publishModel = Schema({
       ref: "User",
     },
   ],
-
+  isblock:{
+     type: Boolean,
+    default: false,
+  },
   category: {
     type: String,
     required: true,
