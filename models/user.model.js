@@ -22,8 +22,7 @@ const userModel = Schema({
   },
   avatar: {
     type: String,
-    default:
-      "https://res.cloudinary.com/dqf7aonc2/image/upload/v1630921545/default_sdvwtk.png",
+    default: "https://return201-s3.me/uploads/avatars/default.png",
   },
   deviceid: {
     type: String,

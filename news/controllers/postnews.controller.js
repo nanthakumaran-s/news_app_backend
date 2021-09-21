@@ -19,7 +19,7 @@ const createPost = async (req, res) => {
     location,
     category,
   } = req.body;
-  let imgUrl = `http://localhost:8080/uploads/thumbnails/default.jpeg`;
+  let imgUrl = `https://return201-s3.me/uploads/thumbnails/default.jpeg`;
 
   if ((await checkContentToxity(aicontent)) === false) {
     return res.json({
@@ -98,10 +98,13 @@ const createPost = async (req, res) => {
         desc: "Added successfully",
       });
       if (deviceid.length > 0) {
+        const user_id_idx = deviceid.indexOf(id);
+        deviceid.splice(user_id_idx, 1);
         sendNotification(
           title,
           content.substring(0, 50),
           imgUrl.replace(/\s+/g, "-"),
+          doc._id,
           deviceid
         );
       }
