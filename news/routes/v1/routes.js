@@ -14,11 +14,13 @@ import IDK from "../../controllers/idk.controller.js";
 import GetTrending from "../../controllers/trending.controller.js";
 import Search from "../../controllers/search.controller.js";
 import getSandboxNewsByLocation from "../../controllers/sanbox-get-location.controller.js";
+import getSandboxNewsById from "../../controllers/getsandboxnews.controller.js";
 
 // routes
 router.post("/postnews", Postnews);
 router.get("/getnews-id", GetNewsById);
 router.get("/getnews-location", GetNewsByLocation);
+router.get("/getsandboxnews-id", getSandboxNewsById);
 router.get("/get-sandbox-news-location", getSandboxNewsByLocation);
 router.get("/getnews-latlong", GetNewsByLatLong);
 router.get("/getnews-category", GetNewsByCategory);
