@@ -13,7 +13,7 @@ const getTrending = async (req, res) => {
   switch (category) {
     case "all":
       resultData = await PublishModel
-        .find()
+        .find({"isblock":false})
         .populate("author", "username email fullname avatar")
         .sort({ sharecount: -1 })
         .skip(parseInt(startIdx))

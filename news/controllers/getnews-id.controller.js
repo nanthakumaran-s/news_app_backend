@@ -11,7 +11,12 @@ const getNewsById = (req, res) => {
     });
     return null;
   }
-
+const blockeduser = PublishModel.findOne({ _id: id }).then((data) => {
+  if (data.isblock) {
+    res.json({ success: false, desc: "Blocked Contnet" });
+    return null;
+  }
+});
   PublishModel.findById(id)
     .populate("author", "username email fullname avatar")
     .then((news) => {

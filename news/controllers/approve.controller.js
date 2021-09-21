@@ -10,7 +10,11 @@ const approve = async (req, res) => {
     res.status(400).json({ success: false, desc: "Bad Request" });
     return null;
   }
-
+  const blockeduser = await User.findOne({ _id: userid });
+  if (blockeduser.isblocked) {
+    res.json({ success: false, desc: "Blocked User" });
+    return null;
+  }
   const datas = await Sandbox.findOne({ _id: newsid });
   if (
     datas.approved.includes(userid) ||
@@ -30,8 +34,8 @@ const approve = async (req, res) => {
     { _id: userid },
     {
       $inc: {
-        score: 2.5,
-      },
+        score: 2.5
+      }
     }
   );
   const approvedPost = {
@@ -43,7 +47,7 @@ const approve = async (req, res) => {
     timestamp: data.timestamp,
     location: data.location,
     denied: data.denied,
-    category: data.category,
+    category: data.category
   };
   const publishPost = new PublishModel(approvedPost);
   const approvepercent = (data.approved.length / data.sendcount) * 100;
@@ -54,8 +58,8 @@ const approve = async (req, res) => {
         { _id: data.author },
         {
           $inc: {
-            score: 10,
-          },
+            score: 10
+          }
         }
       );
       await Sandbox.findOneAndDelete({ _id: newsid });

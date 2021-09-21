@@ -9,7 +9,11 @@ const sandbox = async (req, res) => {
     res.status(400).json({ success: false, desc: "Bad Request" });
     return null;
   }
-
+const blockeduser = await User.findOne({ _id: userid });
+if (blockeduser.isblocked) {
+  res.json({ success: false, desc: "Blocked User" });
+  return null;
+}
   Sandbox.findOne({ _id: newsid }).then((data) => {
     if (
       data.approved.includes(userid) ||

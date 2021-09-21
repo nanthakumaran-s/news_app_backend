@@ -17,15 +17,16 @@ const createPost = async (req, res) => {
     aicontent,
     timestamp,
     location,
-    category,
+    category
   } = req.body;
   let imgUrl = `http://localhost:8080/uploads/thumbnails/default.jpeg`;
+
 
   if ((await checkContentToxity(aicontent)) === false) {
     return res.json({
       success: false,
       data: null,
-      desc: "Our Ai Model find your content is not appropriate. Please review It.",
+      desc: "Our Ai Model find your content is not appropriate. Please review It."
     });
   }
 
@@ -33,7 +34,7 @@ const createPost = async (req, res) => {
     return res.json({
       success: false,
       data: null,
-      desc: "Something Happened Wrong. Try Again after few seconds.",
+      desc: "Something Happened Wrong. Try Again after few seconds."
     });
   }
 
@@ -53,7 +54,7 @@ const createPost = async (req, res) => {
       data.append("api_secret", "9EF635C8D1433FB9746C02FE04BEAF3B");
       const res = await fetch("https://return201-s3.me/api/v1/upload", {
         method: "POST",
-        body: data,
+        body: data
       });
       const json = await res.json();
       imgUrl = json.imgUrl;
@@ -63,12 +64,24 @@ const createPost = async (req, res) => {
   const data = JSON.parse(location);
   //TODO: change homelocation to currentlocation
   const locality = await UserModel.find({
-    "home_location.city": data.locality,
+    $and: [
+      {
+        "home_location.city": data.locality
+      },
+      { isblocked: false }
+    ]
   });
   const district = await UserModel.find({
-    "home_location.district": data.district,
+    $and: [
+      {
+        "home_location.district": data.district
+      },
+      { isblocked: false }
+    ]
   });
-  const state = await UserModel.find({ "home_location.state": data.state });
+  const state = await UserModel.find({
+    $and: [{ "home_location.state": data.state }, { isblocked: false }]
+  });
 
   let deviceid = [];
 
@@ -87,7 +100,7 @@ const createPost = async (req, res) => {
     timestamp: new Date(timestamp),
     location: JSON.parse(location),
     category,
-    thumbnail: imgUrl,
+    thumbnail: imgUrl
   };
   const newPost = new sandboxmodel(addposts);
   try {
@@ -95,7 +108,7 @@ const createPost = async (req, res) => {
       res.status(200).json({
         success: true,
         data: doc,
-        desc: "Added successfully",
+        desc: "Added successfully"
       });
       if (deviceid.length > 0) {
         sendNotification(
