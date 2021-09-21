@@ -64,23 +64,16 @@ const createPost = async (req, res) => {
   const data = JSON.parse(location);
   //TODO: change homelocation to currentlocation
   const locality = await UserModel.find({
-    $and: [
-      {
-        "home_location.city": data.locality
-      },
-      { isblocked: false }
-    ]
+    "home_location.city": data.locality,
+    isblocked: false
   });
   const district = await UserModel.find({
-    $and: [
-      {
-        "home_location.district": data.district
-      },
-      { isblocked: false }
-    ]
+    "home_location.district": data.district,
+    isblocked: false
   });
   const state = await UserModel.find({
-    $and: [{ "home_location.state": data.state }, { isblocked: false }]
+    "home_location.state": data.state,
+    isblocked: false
   });
 
   let deviceid = [];
