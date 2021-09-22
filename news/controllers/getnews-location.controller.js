@@ -1,5 +1,5 @@
 import PublishModel from "../../models/publish.model.js";
-import Sandbox from "../../models/sandbox.model.js"; // for demo purpose only
+
 
 const getNewsByLocation = async (req, res) => {
   const { location, province } = req.query;
@@ -20,8 +20,9 @@ const getNewsByLocation = async (req, res) => {
   let resultData;
   switch (province) {
     case "country":
-      resultData = await Sandbox.find({
+      resultData = await PublishModel.find({
         "location.country": location,
+        isblock: false
       })
         .populate("author", "username email fullname avatar")
         .sort({ timestamp: -1 })
@@ -31,8 +32,9 @@ const getNewsByLocation = async (req, res) => {
       break;
 
     case "district":
-      resultData = await Sandbox.find({
+      resultData = await PublishModel.find({
         "location.district": location,
+        isblock: false
       })
         .populate("author", "username email fullname avatar")
         .sort({ timestamp: -1 })
@@ -42,7 +44,7 @@ const getNewsByLocation = async (req, res) => {
       break;
 
     case "locality":
-      resultData = await Sandbox.find({
+      resultData = await PublishModel.find({
         "location.locality": location,
       })
         .populate("author", "username email fullname avatar")
@@ -53,7 +55,7 @@ const getNewsByLocation = async (req, res) => {
       break;
 
     default:
-      resultData = await Sandbox.find({
+      resultData = await PublishModel.find({
         "location.state": location,
       })
         .populate("author", "username email fullname avatar")
@@ -73,25 +75,25 @@ const getNewsByLocation = async (req, res) => {
   let count;
   switch (province) {
     case "country":
-      count = await Sandbox.countDocuments({
+      count = await PublishModel.countDocuments({
         "location.country": location,
       }).exec();
       break;
 
     case "district":
-      count = await Sandbox.countDocuments({
+      count = await PublishModel.countDocuments({
         "location.district": location,
       }).exec();
       break;
 
     case "locality":
-      count = await Sandbox.countDocuments({
+      count = await PublishModel.countDocuments({
         "location.locality": location,
       }).exec();
       break;
 
     default:
-      count = await Sandbox.countDocuments({
+      count = await PublishModel.countDocuments({
         "location.state": location,
       }).exec();
       break;

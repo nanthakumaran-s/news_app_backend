@@ -11,7 +11,7 @@ const getSandboxNewsById = (req, res) => {
     });
     return null;
   }
-
+ 
   Sandbox.findById(id)
     .populate("author", "username email fullname avatar")
     .then((news) => {

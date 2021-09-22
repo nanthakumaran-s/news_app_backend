@@ -7,7 +7,7 @@ const createbookmarks = async (req, res) => {
     return null;
   }
 
-  const existinguser = await UserModel.findOne({ _id: userid });
+  const existinguser = await UserModel.findOne({ _id: userid ,isblock:false});
   if (existinguser.bookmarks.includes(newsid)) {
     res.status(406).json({ success: false, desc: "Already saved" });
     return null;
