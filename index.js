@@ -39,13 +39,10 @@ app.use("/api/news", news);
 app.use("/api/utils", utils);
 
 mongoose
-  .connect(
-    "mongodb+srv://sanjai:popzz@cluster0.owrbj.mongodb.net/news?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
+  .connect("mongodb://alphaprogrammerz:vathalavathala@localhost:27017", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     loadtoxityModel();
     // loadnsfwModel();
