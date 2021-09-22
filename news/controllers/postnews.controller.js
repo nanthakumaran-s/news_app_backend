@@ -16,50 +16,51 @@ const createPost = async (req, res) => {
     content,
     aicontent,
     timestamp,
+    image,
     location,
     category
   } = req.body;
-  let imgUrl = `https://return201-s3.me/uploads/thumbnails/default.jpeg`;
+  // let imgUrl = `https://return201-s3.me/uploads/thumbnails/default.jpeg`;
 
 
-  if ((await checkContentToxity(aicontent)) === false) {
-    return res.json({
-      success: false,
-      data: null,
-      desc: "Our Ai Model find your content is not appropriate. Please review It."
-    });
-  }
+  // if ((await checkContentToxity(aicontent)) === false) {
+  //   return res.json({
+  //     success: false,
+  //     data: null,
+  //     desc: "Our Ai Model find your content is not appropriate. Please review It."
+  //   });
+  // }
 
-  if ((await checkContentToxity(aicontent)) === "not-loaded") {
-    return res.json({
-      success: false,
-      data: null,
-      desc: "Something Happened Wrong. Try Again after few seconds."
-    });
-  }
+  // if ((await checkContentToxity(aicontent)) === "not-loaded") {
+  //   return res.json({
+  //     success: false,
+  //     data: null,
+  //     desc: "Something Happened Wrong. Try Again after few seconds."
+  //   });
+  // }
 
-  if (req.files) {
-    //check the uploaded image with Ai model
-    if (await checkImageContent(req.files.image.data)) {
-      const data = new FormData();
-      data.append("image", req.files.image.data);
-      data.append("title", title.replace(/\s+/g, "-"));
-      data.append("type", "thumbnails");
-      data.append("username", username);
-      data.append("timestamp", timestamp);
-      data.append(
-        "api_key",
-        "B5AA1476BA32FA38F8C4FD6CCEAC9DB96B4E50545D7BB186A4329153135D98E8"
-      );
-      data.append("api_secret", "9EF635C8D1433FB9746C02FE04BEAF3B");
-      const res = await fetch("https://return201-s3.me/api/v1/upload", {
-        method: "POST",
-        body: data
-      });
-      const json = await res.json();
-      imgUrl = json.imgUrl;
-    }
-  }
+  // if (req.files) {
+  //   //check the uploaded image with Ai model
+  //   if (await checkImageContent(req.files.image.data)) {
+  //     const data = new FormData();
+  //     data.append("image", req.files.image.data);
+  //     data.append("title", title.replace(/\s+/g, "-"));
+  //     data.append("type", "thumbnails");
+  //     data.append("username", username);
+  //     data.append("timestamp", timestamp);
+  //     data.append(
+  //       "api_key",
+  //       "B5AA1476BA32FA38F8C4FD6CCEAC9DB96B4E50545D7BB186A4329153135D98E8"
+  //     );
+  //     data.append("api_secret", "9EF635C8D1433FB9746C02FE04BEAF3B");
+  //     const res = await fetch("https://return201-s3.me/api/v1/upload", {
+  //       method: "POST",
+  //       body: data
+  //     });
+  //     const json = await res.json();
+  //     imgUrl = json.imgUrl;
+  //   }
+  // }
 
   const data = JSON.parse(location);
   //TODO: change homelocation to currentlocation
@@ -93,7 +94,7 @@ const createPost = async (req, res) => {
     timestamp: new Date(timestamp),
     location: JSON.parse(location),
     category,
-    thumbnail: imgUrl
+    thumbnail: image
   };
   const newPost = new sandboxmodel(addposts);
   try {
