@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Mongoosastic from "mongoosastic";
 
 const Schema = mongoose.Schema;
 
@@ -6,10 +7,12 @@ const publishModel = Schema({
   title: {
     type: String,
     required: true,
+    es_indexed: true,
   },
   content: {
     type: String,
     required: true,
+    es_indexed: true,
   },
   thumbnail: {
     type: String,
@@ -45,13 +48,14 @@ const publishModel = Schema({
       ref: "User",
     },
   ],
-  isblock:{
-     type: Boolean,
+  isblock: {
+    type: Boolean,
     default: false,
   },
   category: {
     type: String,
     required: true,
+    es_indexed: true,
   },
   report: {
     type: Number,
@@ -59,6 +63,20 @@ const publishModel = Schema({
   },
 });
 
+publishModel.plugin(Mongoosastic, {
+  host: "elasticsearch",
+  port: 9200,
+});
+
 const Published = mongoose.model("Published", publishModel);
+
+Published.createMapping(function (err, mapping) {
+  if (err) {
+    console.log("error creating mapping (you can safely ignore this)");
+    console.log(err);
+  } else {
+    console.log("mapping created!");
+  }
+});
 
 export default Published;

@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import Mongoosastic from "mongoosastic";
-import user from "./user.model.js";
 
 const Schema = mongoose.Schema;
 
@@ -8,12 +6,10 @@ const sandboxmodel = Schema({
   title: {
     type: String,
     required: true,
-    es_indexed: true,
   },
   content: {
     type: String,
     required: true,
-    es_indexed: true,
   },
   thumbnail: {
     type: String,
@@ -58,24 +54,9 @@ const sandboxmodel = Schema({
   category: {
     type: String,
     required: true,
-    es_indexed: true,
   },
 });
 
-sandboxmodel.plugin(Mongoosastic, {
-  host: "elasticsearch",
-  port: 9200,
-});
-
 const sandbox = mongoose.model("Sandbox", sandboxmodel);
-
-sandbox.createMapping(function (err, mapping) {
-  if (err) {
-    console.log("error creating mapping (you can safely ignore this)");
-    console.log(err);
-  } else {
-    console.log("mapping created!");
-  }
-});
 
 export default sandbox;
