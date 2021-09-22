@@ -12,8 +12,7 @@ const getTrending = async (req, res) => {
   let resultData;
   switch (category) {
     case "all":
-      resultData = await PublishModel
-        .find()
+      resultData = await PublishModel.find({ isblock: false })
         .populate("author", "username email fullname avatar")
         .sort({ sharecount: -1 })
         .skip(parseInt(startIdx))
@@ -22,7 +21,7 @@ const getTrending = async (req, res) => {
       break;
 
     default:
-      resultData = await PublishModel.find({ category })
+      resultData = await PublishModel.find({ category, isblock: false })
         .populate("author", "username email fullname avatar")
         .sort({ sharecount: -1 })
         .skip(parseInt(startIdx))

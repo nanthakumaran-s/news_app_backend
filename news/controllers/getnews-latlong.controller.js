@@ -1,5 +1,5 @@
 import PublishModel from "../../models/publish.model.js";
-import Sandbox from "../../models/sandbox.model.js"; // for demo purposes only
+
 
 const getLocationLatLong = (req, res) => {
   const { lat, long } = req.query;
@@ -10,7 +10,7 @@ const getLocationLatLong = (req, res) => {
     return null;
   }
 
-  Sandbox.find({ "location.lat": lat, "location.long": long })
+  PublishModel.find({ "location.lat": lat, "location.long": long })
     .populate("author", "username email fullname avatar")
     .then((news) => {
       if (news === null) {

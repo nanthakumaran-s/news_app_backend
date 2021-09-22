@@ -6,26 +6,30 @@ const sandbox = async (req, res) => {
 
   // Bad Request
   if (newsid === undefined || userid === undefined) {
-    res.status(400).json({ success: false, desc: "Bad Request" });
+    res.json({ success: false, desc: "Bad Request" });
     return null;
   }
-
-  Sandbox.findOne({ _id: newsid }).then((data) => {
+  const blockeduser = await User.findOne({ _id: userid });
+  if (blockeduser.isblocked) {
+    res.json({ success: false, desc: "Blocked User" });
+    return null;
+  }
+  const data = await Sandbox.findOne({ _id: newsid })
     if (
       data.approved.includes(userid) ||
       data.denied.includes(userid) ||
       data.idk.includes(userid)
     ) {
-      res.status(406).json({ success: false, desc: "User Already Responded" });
+      res.json({ success: false, desc: "User Already Responded" });
       return null;
     }
-  });
+  
   await User.findOneAndUpdate(
     { _id: userid },
     {
       $inc: {
-        score: 0.5,
-      },
+        score: 0.5
+      }
     }
   );
   Sandbox.findOneAndUpdate(
@@ -34,11 +38,11 @@ const sandbox = async (req, res) => {
     { new: true }
   )
     .then((data) => {
-      res.status(200).json({ success: true, desc: "Added to IDK" });
+      res.json({ success: true, desc: "Added to IDK" });
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).json({ success: false, desc: "Something went wrong" });
+      res.json({ success: false, desc: "Something went wrong" });
     });
 };
 

@@ -9,6 +9,12 @@ const deny = (req, res) => {
     res.status(400).json({ success: false, desc: "Bad Request" });
     return null;
   }
+  const blockeduser = User.findOne({ _id: userid }).then((data) => {
+    if (data.isblocked) {
+      res.json({ success: false, desc: "Blocked User" });
+      return null;
+    }
+  });
 
   Sandbox.findOne({ _id: newsid }).then((data) => {
     if (
@@ -25,8 +31,8 @@ const deny = (req, res) => {
     { _id: userid },
     {
       $inc: {
-        score: 2.5,
-      },
+        score: 2.5
+      }
     }
   );
 
