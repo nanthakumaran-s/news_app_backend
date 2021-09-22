@@ -76,6 +76,7 @@ services:
     environment:
       - BACKEND=http://newsapp:8080
       - PORT=8082
+      - ALLOWED_METHODS=GET HEAD POST PUT PATCH DELETE OPTIONS
     depends_on:
       - newsapp
     expose:
