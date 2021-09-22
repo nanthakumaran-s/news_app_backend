@@ -72,7 +72,7 @@ const Published = mongoose.model("Published", publishModel);
 
 Published.createMapping(function (err, mapping) {
   if (err) {
-    console.log("error creating mapping (you can safely ignore this)");
+    console.log("error creating mapping");
     console.log(err);
   } else {
     console.log("mapping created!");
