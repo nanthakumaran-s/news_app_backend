@@ -1,9 +1,8 @@
 import PublishModel from "../../models/publish.model.js";
-import Sandbox from "../../models/sandbox.model.js"; // for demo purposes only
 
 const search = (req, res) => {
   const { query } = req.query;
-  Sandbox.search(
+  PublishModel.search(
     {
       query_string: {
         query: `*${query}*`,

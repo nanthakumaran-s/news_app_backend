@@ -13,7 +13,7 @@ const sendNotification = (title, body, imageUrl, id, token) => {
       },
       data: {
         click_action: "FLUTTER_NOTIFICATION_CLICK",
-        id: id,
+        id: id.toString(),
       },
       android: {
         priority: "high",

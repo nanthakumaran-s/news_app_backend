@@ -84,7 +84,7 @@ const createPost = async (req, res) => {
   const addposts = {
     title,
     author: id,
-    content,
+    content: JSON.stringify(content),
     sendcount: deviceid.length,
     timestamp: new Date(timestamp),
     location: JSON.parse(location),
@@ -100,13 +100,14 @@ const createPost = async (req, res) => {
         desc: "Added successfully",
       });
       if (deviceid.length > 0) {
+        console.log(doc["id"]);
         const user_id_idx = deviceid.indexOf(id);
         deviceid.splice(user_id_idx, 1);
         sendNotification(
           title,
-          content.substring(0, 50),
-          imgUrl.replace(/\s+/g, "-"),
-          doc._id,
+          aicontent.substring(0, 50),
+          image,
+          doc["id"],
           deviceid
         );
       }
