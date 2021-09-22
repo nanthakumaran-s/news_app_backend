@@ -1,7 +1,6 @@
 import admin from "../utils/fcm.js";
 
 const sendNotification = (title, body, imageUrl, id, token) => {
-  console.log(imageUrl);
   admin
     .messaging()
     .sendMulticast({

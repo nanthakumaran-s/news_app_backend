@@ -75,25 +75,12 @@ services:
     container_name: nginx
     environment:
       - BACKEND=http://newsapp:8080
-      - PORT=8082
+      - PORT=80
       - ALLOWED_METHODS=GET HEAD POST PUT PATCH DELETE OPTIONS
     depends_on:
       - newsapp
-    expose:
-      - "8082"
-
-  varnish:
-    image: varnish:6.6-alpine
-    container_name: varnish
-    environment:
-      - CACHE_SIZE=512m
-      - VARNISH_MEMORY=100m
-    volumes:
-      - ./default.vcl:/etc/varnish/default.vcl:ro
     ports:
       - 80:80
-    depends_on:
-      - nginx
 
 networks:
   mongo-compose-network:

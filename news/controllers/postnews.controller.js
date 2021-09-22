@@ -59,8 +59,10 @@ const createPost = async (req, res) => {
 
   const data = JSON.parse(location);
   //TODO: change homelocation to currentlocation
+
+  const author = await UserModel.findOne({ _id: id });
   const locality = await UserModel.find({
-    "home_location.city": data.locality,
+    "home_location.locality": data.locality,
     isblocked: false,
   });
   const district = await UserModel.find({
@@ -74,11 +76,11 @@ const createPost = async (req, res) => {
 
   let deviceid = [];
 
-  if (locality.length > 0) {
+  if (locality.length > 1) {
     deviceid = await locality.map((item) => item.deviceid);
-  } else if (district.length > 0) {
+  } else if (district.length > 1) {
     deviceid = await district.map((item) => item.deviceid);
-  } else if (state.length > 0) {
+  } else if (state.length > 1) {
     deviceid = await state.map((item) => item.deviceid);
   }
   const addposts = {
@@ -100,16 +102,17 @@ const createPost = async (req, res) => {
         desc: "Added successfully",
       });
       if (deviceid.length > 0) {
-        console.log(doc["id"]);
-        const user_id_idx = deviceid.indexOf(id);
+        const user_id_idx = deviceid.indexOf(author.deviceid);
         deviceid.splice(user_id_idx, 1);
-        sendNotification(
-          title,
-          aicontent.substring(0, 50),
-          image,
-          doc["id"],
-          deviceid
-        );
+        if (deviceid.length > 0) {
+          sendNotification(
+            title,
+            aicontent.substring(0, 50),
+            image,
+            doc["id"],
+            deviceid
+          );
+        }
       }
     });
   } catch (err) {
