@@ -48,7 +48,7 @@ mongoose
   )
   .then(() => {
     loadtoxityModel();
-    loadnsfwModel();
+    // loadnsfwModel();
     server.listen(PORT, () => {
       console.log(`Server listening on port: http://localhost:${PORT}`);
     });
