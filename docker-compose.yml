@@ -97,7 +97,7 @@ services:
 
   certbot:
     image: certbot/certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email nanthakumaran.ofcl@gmail.com --agree-tos --no-eff-email -d return201-s3.me -d www.return201-s3.me
+    command: certonly --webroot --webroot-path=/var/www/certbot --email nanthakumaran.ofcl@gmail.com --agree-tos --no-eff-email -d yarumkandupudikamudiyathu.me -d www.yarumkandupudikamudiyathu.me
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/logs:/var/log/letsencrypt
