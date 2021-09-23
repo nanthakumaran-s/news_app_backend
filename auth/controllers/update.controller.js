@@ -49,15 +49,15 @@ const updateprofile = async (req, res) => {
   //     });
   // }
 
-  User.findOneAndUpdate(
-    { username },
-    {
-      ...req.body,
-    },
-    {
-      new: true,
-    }
-  )
+  const update_doc = {
+    ...req.body,
+  };
+
+  delete update_doc["username"];
+
+  User.findOneAndUpdate({ username }, update_doc, {
+    new: true,
+  })
     .then((user) => {
       return res.json({
         success: true,
